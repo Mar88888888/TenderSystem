@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ТендерUA</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <!-- Навігація -->
+      <div class="logo">
+        <img id="logo" class="nav_img" src="logo.png" />
+      </div>
+      <nav>
+        <ul>
+          <li id="home-btn">
+            <a href="/homepage.html"
+              ><img class="nav_img"  src="home.png"
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+              ><img class="nav_img" id="open-search-btn" src="search.png"
+            /></a>
+          </li>
+          <li>
+            <div class="search-container search hidden">
+              <input
+                type="text"
+                class="search-box search hidden"
+                placeholder="Пошук тендеру..."
+              />
+              <button id="search-button" class="search hidden">Пошук</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- Кнопка входу -->
+      <span class="login">
+        <a href="#" class="login-btn"
+          ><img id="login" class="nav_img" src="login.png"
+        /></a>
+      </span>
+      <div class="menu hidden">
+        <ul>
+          <li class="menu-item menu-top" id="create-tender">
+            <a href="#"><img src="plus.png" class="menu-icon"/>Створити тендер</a>
+          </li>
+          <li class="menu-item" id="my-tenders">
+            <a href="#"><img src="tender.png"class="menu-icon"></i> Мої тендери</a>
+          </li>
+          <li class="menu-item" id="log-out">
+            <a href="#" ><img src="exit.png"class="menu-icon"></i>Вийти</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <div class="overlay hidden"></div>
+
+<!-- Форма авторизації -->
+
+      <form id="login-form" class="form hidden">
+        <h2>Увійти</h2>
+        <label for="username">Логін</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Введіть логін"/> <!--required required-->
+        
+
+        <label for="password">Пароль</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Введіть пароль" 
+        />
+        <p>Ще не маєте акаунту? <a id="register">Створити новий</a></p>
+        <button id="submit__login">Увійти</button>
+      </form>
+
+<!-- Реєстрація -->
+
+      <form id="register-form" class="form hidden">
+        <h2>Створити акаунт</h2>
+
+        <label for="username">Ім'я</label>
+        <input
+          type="text"
+          id="reg-name"
+          name="username"
+          placeholder="Введіть своє повне ім'я"required
+        />
+
+        <label for="username">Логін</label>
+        <input
+          type="text"
+          id="reg-username"
+          name="username"
+          placeholder="Введіть логін"required
+        />
+
+        <label for="password">Пароль</label>
+        <input
+          type="password"
+          id="reg-password"
+          name="password"
+          placeholder="Введіть пароль"required
+        />
+
+        <label for="repeat-password">Повторіть пароль</label>
+        <input
+          type="password"
+          id="repeat-password"
+          name="repeat-password"
+          placeholder="Введіть пароль ще раз"
+          required
+        />
+
+        <p>Вже маєте акаунт?<a class="login-btn">Увійти</a></p>
+        <button id="submit__reg">Створити акаунт</button>
+      </form>
+
+      <!-- Результати пошуку -->
+      <div class="hidden" id="tender-search">
+      <!--   <label id="search-result-label">Результати пошуку:</label>
+        <div class="tender">
+          <h2 class="tender-title">Заголовок тендеру</h2>
+          <p class="tender-description">Короткий опис</p>
+          <ul class="tender-details">
+            <li><strong>Хазяїн тендеру:</strong> Company XYZ</li>
+          </ul>
+          <button class="create-bid">Створити пропозицію</button>
+        </div> -->
+      </div>
+
+<!-- Створити тендер -->
+      <div id="tender-create" class="create-form-container hidden" >
+        <form method="POST" action="/submit">
+          <label for="name">Заголовок тендеру:</label>
+          <input type="text" id="title" name="name" required>
+
+          <label for="name">Компанія:</label>
+          <input type="text" id="company" name="name" required>
+          
+          <label for="price">Очікувана вартість у грн:</label>
+          <input type="number" id="exp-price" name="price" required>
+          
+          <label for="description">Опис:</label>
+          <textarea id="description" name="description" required></textarea>
+
+          <label for="keywords">Ключові слова:</label>
+          <textarea id="keywords" name="keywords" placeholder="Введіть ключові слова через пробіл. (Заголовок тендеру назва компанії та слова з опису будуть додані автоматично)" required></textarea>
+      
+          <button id="create-tender-btn">Створити</button>
+        </form>
+      </div>
+<!--Створення пропозиції  -->
+      <div id="bid-create" class="create-form-container hidden" tenderId="">
+        <h2></h2>
+        <form method="POST" action="/submit">
+          <label for="name">Компанія:</label>
+          <input type="text" id="bid-owner" name="name" required>
+          
+          <label for="price">Запропонована вартість у грн:</label>
+          <input type="number" id="bid-price" name="price" required>
+
+          <label for="description">Опис пропозиції:</label>
+          <textarea id="bid-description" name="description" required></textarea>
+
+
+
+          <button id="create-bid-btn">Створити</button>
+        </form>
+      </div>
+
+
+      <!-- Пропозиції -->
+      <div class="hidden" id="tender-bids">
+        <!--   <label id="search-result-label">Результати пошуку:</label>
+          <div class="tender">
+            <h2 class="tender-title">Заголовок тендеру</h2>
+            <p class="tender-description">Короткий опис</p>
+            <ul class="tender-details">
+              <li><strong>Дата початку:</strong> January 1, 2022</li>
+              <li><strong>Дата завершення:</strong> January 1, 2022</li>
+              <li><strong>Хазяїн тендеру:</strong> Company XYZ</li>
+            </ul>
+            <button class="create-bid">Створити пропозицію</button>
+          </div> -->
+        </div>
+<!-- Видалення тендеру -->
+
+      <form id="delete-confirm" class="form hidden">
+        <h2>Видалити цей тендер?</h2>
+        <button id="conf-del-yes">Так</button>
+        <button id="conf-del-cancel">Скасувати</button>
+      </form>
+
+      <form id="accept-confirm" class="form hidden">
+        <h2></h2>
+        <button id="conf-acc-yes">Так</button>
+        <button id="conf-acc-cancel">Скасувати</button>
+      </form>
+
+      <form id="create-tender-success" class="form hidden">
+        <h2></h2>
+        <button id="ok">Чудово!</button>
+      </form>
+
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

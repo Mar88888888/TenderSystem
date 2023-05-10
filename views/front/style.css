@@ -1,0 +1,364 @@
+/* html {
+  scrollbar-width: none;
+} */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  background: linear-gradient(to bottom right, #c9fbff, #66b4b9);
+  background-attachment: fixed;
+  height: 1000px;
+}
+main {
+  padding-top: 6em;
+}
+/* Навігація */
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  padding-top: 0;
+  background-color: #b2d6d3e7;
+  color: #fff;
+  height: 5rem;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+button {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: 18px;
+
+  background-color: #218d76;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  min-height: 2em;
+  min-width: 5em;
+  border-radius: 0.8em;
+}
+button:hover {
+  background-color: #1d6069;
+}
+
+nav {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: #fff;
+  height: 5rem;
+  min-width: 50%;
+  margin-top: 0.5em;
+  border-radius: 1em;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin: 0 8px;
+}
+textarea {
+  max-height: 700px;
+}
+
+.logo {
+  display: inline;
+  margin-right: auto;
+}
+.login {
+  display: inline;
+  margin-left: auto;
+}
+.hidden {
+  display: none;
+}
+
+.nav_img {
+  max-width: 3em;
+  max-height: 3em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin: 1em;
+}
+
+.search-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 18px;
+  color: #000000;
+  outline: none;
+  min-height: 1.2em;
+  max-width: max-content;
+}
+
+.search-active {
+  justify-content: left;
+}
+.search-active ul {
+  width: 100%;
+}
+
+#search-button {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: 18px;
+
+  background-color: #218d76;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  min-height: 2em;
+  min-width: 5em;
+}
+
+#search-button:hover {
+  background-color: #1d6069;
+}
+
+/* Форма авторизації */
+.form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.425);
+  z-index: 6;
+}
+
+#login-form input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 0.5em;
+  background-color: #f1f1f1;
+}
+
+#register-form input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 0.5em;
+  background-color: #f1f1f1;
+}
+
+.tender-price,
+.bid-price {
+  hyphens: auto;
+}
+
+#register,
+.login-btn {
+  display: inline;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}
+/* Виведення результатів пошуку */
+#tender-search,
+#tender-bids {
+  min-width: 90%;
+  background-color: #9e9e9e;
+  border: #000000 4px solid;
+  border-radius: 3em;
+  border-bottom-right-radius: 0;
+  padding: 2em;
+}
+#search-result-label {
+  margin-left: 10%;
+  margin-bottom: 10em;
+  font-size: 1.5em;
+  background-color: #e8ffff;
+  border-radius: 0.4em;
+  padding: 0.5em;
+}
+
+.tender {
+  word-wrap: break-word;
+  display: inline-block;
+  background-color: #e8ffff;
+  border-width: 4px;
+  border-style: solid;
+  border-top-right-radius: 2em;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  padding: 20px;
+  padding-bottom: 15px;
+  width: 90%;
+  height: auto;
+}
+
+.tender-title {
+  font-size: 28px;
+  margin-top: 0;
+}
+
+.tender-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.tender-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tender-details li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.tender-details li strong {
+  font-weight: bold;
+}
+
+.btn-bid {
+  display: inline;
+  align-self: flex-end;
+  border-bottom-right-radius: 1.8rem;
+  border-top-right-radius: 1.8rem;
+  border-top-left-radius: 1.8rem;
+  border-bottom-left-radius: inherit;
+  min-width: 15em;
+  margin-top: 0.5em;
+}
+
+/* Menu 
+
+
+*/
+.menu {
+  position: fixed;
+  top: 5.5em;
+  right: 0;
+  width: 200px;
+  background-color: #f2f2f2;
+  border: 3px solid #000000;
+  border-radius: 2em;
+  border-top-right-radius: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  display: block;
+  border-top: 1px solid #9e9e9e;
+}
+
+.menu-top {
+  border-top: 0;
+}
+
+a {
+  display: flex;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  align-items: center;
+}
+
+.menu-icon {
+  padding: 0.5em;
+  max-width: 2em;
+  max-height: 2em;
+}
+
+/* Створити тендер */
+.create-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+
+.create-form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.create-form-container input,
+textarea {
+  min-width: 90%;
+  max-width: 95%;
+
+  outline: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.create-form-container input:focus {
+  min-width: 90%;
+  max-width: 95%;
+
+  outline: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  box-shadow: #000000 1px 1px 5px;
+}
+
+.no-results {
+  margin: 1.5em;
+}
+
+.container {
+  word-wrap: break-word;
+  width: 90%;
+  height: auto;
+  border: 1px solid rgb(110, 108, 108);
+  border-radius: 1em;
+  padding: 10px;
+  margin-bottom: 1em;
+}

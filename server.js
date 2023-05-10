@@ -71,7 +71,7 @@ class User extends Base {
     this.account_password = password;
   }
 
-  get IsLogged() {
+  IsLogged() {
     return this.account_username != undefined;
   }
 
@@ -94,7 +94,10 @@ class User extends Base {
       const collection = db.collection("users");
 
       await collection
-        .find({ account_username: this.login, account_password: this.password })
+        .find({
+          account_username: this.account_username,
+          account_password: this.account_password,
+        })
         .toArray()
         .then((docs) => {
           if (docs[0] === undefined) throw new Error("Not found");
@@ -173,7 +176,7 @@ class Bid extends Base {
 //
 let currentUser = new User();
 app.get("/logged", (_, res) => {
-  const loggedIn = currentUser.IsLogged;
+  const loggedIn = currentUser.IsLogged();
   console.log(`Logged: ${loggedIn}`);
   const data = { logged: loggedIn, currentUserId: currentUser._id || "" };
   res.send(data);
@@ -186,7 +189,7 @@ app.post("/reg", async (req, res) => {
     await client.connect();
 
     const user = req.body;
-    const newUser = new User(new ObjectId(), Object.values(user));
+    const newUser = new User(new ObjectId(), ...Object.values(user));
     const foundUser = await User.findItemInCollection(
       { account_username: newUser.account_username },
       "users"
@@ -244,7 +247,13 @@ app.post("/log", async (req, res) => {
     await client.connect();
 
     const request = req.body;
-    const user = new User(new ObjectId(), Object.values(request));
+    const user = new User(
+      new ObjectId(),
+      "-",
+      Object.values(request)[1],
+      Object.values(request)[2]
+    );
+    console.log(Object.values(user));
     if (request.log === "out") {
       currentUser = {};
     } else if (request.log === "in") {
@@ -299,7 +308,7 @@ app.post("/newTender", async (req, res) => {
 
     const tender = new Tender(
       new ObjectId(),
-      Object.values(req.body),
+      ...Object.values(req.body),
       currentUser._id,
       false,
       true
@@ -374,7 +383,7 @@ app.post("/toggleActive", async (req, res) => {
     const id = req.body.tenderId;
     const filter = { _id: new ObjectId(id) };
     const tender = await collection.findOne(filter);
-    const updatedTender = new Tender(Object.values(tender));
+    const updatedTender = new Tender(...Object.values(tender));
 
     await updatedTender.toggleActive();
 
@@ -394,7 +403,7 @@ app.post("/newbid", (req, res) => {
 
       const bid = new Bid(
         new ObjectId(),
-        Object.values(req.body),
+        ...Object.values(req.body),
         currentUser._id,
         true
       );

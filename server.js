@@ -207,39 +207,6 @@ app.post("/reg", async (req, res) => {
   }
 });
 //
-// async function addNewUser(user, res) {
-//   try {
-//     const collection = db.collection("users");
-
-//     const result = await collection.insertOne(user);
-//     if (result.acknowledged) {
-//       res.json({ response: true });
-//       currentUser = user;
-//     } else throw new Error("Result was not acknowledged");
-//   } catch (err) {
-//     console.log(user);
-//     console.log(`Error inserting document: ${err.message}`);
-//     throw err;
-//   }
-// }
-//
-//
-// async function findItemInCollection(item, collectionName, one = true) {
-//   try {
-//     const collection = db.collection(collectionName);
-//     const docs = await collection.find(item).toArray();
-//     if (one) {
-//       return docs[0];
-//     } else {
-//       return docs;
-//     }
-//   } catch (err) {
-//     console.error("Error finding documents:", err);
-//     throw err;
-//   }
-// }
-
-//
 //Log
 
 app.post("/log", async (req, res) => {
@@ -265,42 +232,6 @@ app.post("/log", async (req, res) => {
     await client.close();
   }
 });
-
-// async function logInUser(user, res) {
-//   try {
-//     const collection = db.collection("users");
-
-//     await collection
-//       .find({ account_username: user.login, account_password: user.password })
-//       .toArray()
-//       .then((docs) => {
-//         if (docs[0] === undefined) throw new Error("Not found");
-//         currentUser = docs[0];
-//         res.json({ response: true, currentUserId: currentUser._id });
-//       })
-//       .catch((err) => {
-//         if (err.message === "Not found") {
-//           res.json({ response: false, cause: "notFound" });
-//         } else res.json({ response: false, cause: "serverError" });
-//         console.error("Error finding documents:", err);
-//       });
-//   } catch (err) {
-//     console.log(`Didn't find ${user}: ${err.message}`);
-//   }
-// }
-
-// async function addNewItemInCollection(item, collectionName, res) {
-//   try {
-//     const collection = db.collection(collectionName);
-
-//     const result = await collection.insertOne(item);
-//     if (result.acknowledged) {
-//       res.json({ response: true });
-//     } else throw new Error("Result was not acknowledged");
-//   } catch (err) {
-//     console.log(`Error inserting document: ${err.message}`);
-//   }
-// }
 
 app.post("/newTender", async (req, res) => {
   try {
